@@ -1,0 +1,96 @@
+main.java
+package myanimals;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Current animal count: " + Animal.getNumOfAnimals());
+
+        Cat myCat = new Cat();
+        myCat.name = "Stella";
+        myCat.setAge(8);
+        myCat.meow();
+        System.out.println("Cat's Name: " + myCat.name);
+        System.out.println("Cat's Age: " + myCat.getAge());
+        System.out.println("Max Lives for a Cat: " + Cat.MAX_LIVES);
+        System.out.println("Lives Remaining: " + myCat.getLivesRemaining());
+        System.out.println("Current animal count: " + Animal.getNumOfAnimals());
+
+        Dog myDog = new Dog();
+        myDog.name = "Jet";
+        myDog.setAge(5);
+        myDog.bark();
+        System.out.println("Dog's Name: " + myDog.name);
+        System.out.println("Dog's Age: " + myDog.getAge());
+        System.out.println("Current animal count: " + Animal.getNumOfAnimals());
+    }
+}
+
+Animal.java
+package myanimals;
+
+public class Animal {
+    protected String name;
+    protected int age;
+
+    private static int numOfAnimals = 0;
+
+    public Animal() {
+        numOfAnimals++;
+        System.out.println("Animal created. Current animal count: " + numOfAnimals);
+    }
+
+    public static int getNumOfAnimals() {
+        return numOfAnimals;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+Cat.java
+package myanimals;
+
+public class Cat extends Animal {
+
+    public static final int MAX_LIVES = 9;
+
+    private int livesRemaining;
+
+    public Cat() {
+        super();
+        this.livesRemaining = MAX_LIVES;
+        System.out.println("A new Cat is created.");
+    }
+
+    public void meow() {
+        System.out.println(name + " says: Meow!");
+    }
+
+    public int getLivesRemaining() {
+        return livesRemaining;
+    }
+
+    public void setLivesRemaining(int livesRemaining) {
+        this.livesRemaining = livesRemaining;
+    }
+}
+
+Dog.java
+package myanimals;
+
+public class Dog extends Animal {
+
+    public Dog() {
+        super();
+        System.out.println("A new Dog is created.");
+    }
+
+    public void bark() {
+        System.out.println(name + " says: Woof!");
+    }
+}
